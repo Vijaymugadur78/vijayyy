@@ -1,0 +1,129 @@
+<!DOCTYPE html><html>
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Thanu❤️</title><style>
+body {
+  margin:0;
+  font-family: Arial;
+  text-align:center;
+  background:black;
+  color:white;
+}
+
+.screen { display:none; padding:30px; }
+#lock { display:block; }
+
+button {
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:#ff4081;
+  color:white;
+  margin:10px;
+}
+
+img {
+  width:200px;
+  margin:10px;
+  border-radius:15px;
+}
+
+video {
+  width:300px;
+  margin:10px;
+}
+</style></head><body><!-- 🔐 PASSWORD --><div id="lock" class="screen">
+  <h2>Enter Password 🔐</h2>
+  <input type="password" id="pass">
+  <br><br>
+  <button onclick="openPage()">Open ❤️</button>
+  <p id="msg"></p>
+</div><!-- 🎉 MAIN --><div id="main" class="screen">
+  <h1 id="text"></h1> 
+   <img src="Images/photo1.JPEG">
+  <img src="Images/photo2.JPEG"> 
+   <br><button onclick="showGallery()">📸 Photos</button>
+<button onclick="showVideo()">🎥 Video</button>
+
+</div><!-- 📸 GALLERY --><div id="gallery" class="screen">
+  <h2>Our Memories 💖</h2>
+  <img src="Images/photo3.JPEG">
+  <img src="Images/photo4.JPEG">
+  <br>
+  <button onclick="back()">⬅ Back</button>
+</div><!-- 🎥 VIDEO --><div id="video" class="screen">
+  <h2>Special Moment 🎬</h2>
+  <video controls src="video1.mp4"></video>
+  <br>
+  <button onclick="back()">⬅ Back</button>
+</div><!-- 🎶 MUSIC --><audio id="music" src="music.mp3" loop></audio>
+
+<!-- 🎤 AI VOICE --><audio id="voice" src="voice.mp3"></audio>
+
+<script>
+
+const PASSWORD = "Thanu";
+
+/* OPEN PAGE */
+function openPage(){
+  let input = document.getElementById("pass").value;
+
+  if(input === PASSWORD){
+    hideAll();
+    document.getElementById("main").style.display="block";
+
+    // play music
+    let music = document.getElementById("music");
+    music.volume = 0.3;
+    music.play();
+
+    // play voice after 2 sec
+    setTimeout(()=>{
+      document.getElementById("voice").play();
+    },2000);
+
+    typing();
+
+  } else {
+    document.getElementById("msg").innerText="Wrong Password 😢";
+  }
+}
+
+/* HIDE ALL */
+function hideAll(){
+  document.querySelectorAll('.screen').forEach(s=>s.style.display="none");
+}
+
+/* NAVIGATION */
+function showGallery(){
+  hideAll();
+  document.getElementById("gallery").style.display="block";
+}
+
+function showVideo(){
+  hideAll();
+  document.getElementById("video").style.display="block";
+}
+
+function back(){
+  hideAll();
+  document.getElementById("main").style.display="block";
+}
+
+/* TYPING EFFECT */
+let message = "Happy Birthday My Love ❤️ You are my everything 💖";
+let i = 0;
+
+function typing(){
+  function type(){
+    if(i < message.length){
+      document.getElementById("text").innerHTML += message.charAt(i);
+      i++;
+      setTimeout(type, 50);
+    }
+  }
+  type();
+}
+
+</script></body>
+</html>
